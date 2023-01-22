@@ -1,18 +1,35 @@
 #include<stdio.h>
 #include<stdlib.h>
-void main()
+ int main()
 {
-    FILE *fp1,*fp2;
-    char ch,fname1[20],fname2[20];
+    FILE *fp,*fp1,*fp2;
+
+    char filename[100],c;
     printf("Copy a file in another name:");
     printf("--------------------");
     printf("Input the source file name");
-    scanf("%s",fname1);
-    fp=fopen(fname1,"r");
-    if(fp==NULL)
+    scanf("%s",filename);
+    fp=fopen(filename,"r");
+    if(fp1==NULL)
     {
         printf("input the new file name:");
-        scanf("%s",fname2);
+        exit(0);
     }
+    fp=fopen(filename,"w");
+    if(fp2==NULL)
+    {
+        printf("cannot open file %s\n",filename);
+        exit(0);
+    }
+    c=fgetc(fp);
+    while(c!=EOF)
+    {
+        fputc(c,fp2);
+        c=fgetc(fp1);
+    }
+    printf("\n contents copied to %s",filename);
+    fclose(fp1);
+    fclose(fp2);
+    return 0;
     
 }
